@@ -72,8 +72,7 @@ describe('Life Game Manager', () => {
         });
     });
 
-
-    describe('Grid evolution with Day as unit of time', () => {
+    describe('Empty grid evolution with "Day" as unit of time', () => {
         it('should pass the next day and check no cell mutation because there are only dead cells', () => {
             const gameManager = GameManager(5, 5);
             const gridStateDay0 = gameManager.grid;
@@ -85,6 +84,7 @@ describe('Life Game Manager', () => {
 
             expect(Object.is(gridStateDay1, gridStateDay0)).toBeFalsy();
         });
+
         it('should pass the next day and check immutable state between two days of evolution', () => {
             const gameManager = GameManager(5, 5);
             const gridStateDay0 = gameManager.grid;
@@ -96,11 +96,30 @@ describe('Life Game Manager', () => {
             // it wasnt reflected in the day 2 state
             updateGridCell(gridStateDay0, { x: 1, y: 3 });
             expect(getCellAt(gridStateDay1, { x: 1, y: 3 })).toEqual(0);
+
+            gameManager.nextDay();
+            const gridStateDay2 = gameManager.grid;
+            updateGridCell(gridStateDay0, { x: 10, y: 5 });
+            expect(getCellAt(gridStateDay2, { x: 10, y: 5 })).toBeNull();
+            expect(Object.is(gridStateDay1, gridStateDay2)).toBeFalsy();
         });
     });
 
-    describe('Grid cell status update whether 0 (dead) or 1 (alive)', () => {
-        it('should make one cell alive at (2,3)', () => {
+    describe('Populated grid evolution', () => {
+        xit('should create a one living Cell and check evolution', () => {
+            const gameManager = GameManager(7, 5);
+
+            const gridStateDay0 = gameManager.grid;
+            updateGridCell(gridStateDay0, { x: 3, y: 2 });
+            expect(getCellAt(gridStateDay0, { x: 3, y: 2 })).toEqual(1);
+
+            gameManager.nextDay();
+            expect(getCellAt(gridStateDay0, { x: 3, y: 2 })).toEqual(0);
+        });
+    });
+
+    describe('Grid cell update whether 0 (dead) or 1 (alive)', () => {
+        it('should make one cell alive at position (2,3)', () => {
             const gameManager = GameManager(5, 5);
             const gridStateDay0 = gameManager.grid;
             const coords = { x: 2, y: 3 };
