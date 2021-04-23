@@ -1,13 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
+  background: #f8f8f8;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+}
+
+.game-container {
+  padding: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-container > .grid-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.game-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.game-row-container > div {
+  padding: 20px;
+}
+
+#cell {
+  transition: background-color 0.5s ease;
+  border: 1.5px solid rgb(88, 88, 88);
+}
+
+#cell:hover {
+  cursor: pointer;
+}
+
+#cell:hover:not(.alive-cell) {
+  background: rgb(194, 194, 194);
+}
+#cell:hover:not(.dead-cell) {
+  opacity: 0.7;
+}
+
+.alive-cell {
+  background: rgb(0, 139, 163);
+}
+
+.dead-cell {
+  background: white;
 }
