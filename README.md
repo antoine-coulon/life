@@ -1,9 +1,13 @@
 <p align="center">
-    Life game implementation 🧬⏳ with TypeScript & React.
+    🧬⏳
 </p>
 
 <p align="center">
-    <a href="https://life-1ca5e.web.app"> Check the online game here </a>
+    <a href="https://en.wikipedia.org/wiki/The_Game_of_Life">The Game of Life</a> implementation with TypeScript & React.
+</p>
+
+<p align="center">
+    <a href="https://life-1ca5e.web.app"> Check the online version here </a>
 </p>
 
 <p align="center">
@@ -14,6 +18,8 @@
         <img src="https://img.shields.io/codecov/c/github/antoine-coulon/life.svg?style=flat-square" alt="Core lib coverage">
     </a>
 </p>
+
+Start the game locally
 
 ```console
 $ npm run start
