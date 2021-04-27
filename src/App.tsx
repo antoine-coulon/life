@@ -2,9 +2,14 @@ import React from 'react';
 import './App.css';
 import { Game } from './components/Game';
 
-function App() {
+function App(): JSX.Element {
   return (
-    <Game />
+    <>
+      <header>
+        Life Game 🧬
+      </header>
+      <Game />
+    </>
   );
 }
 

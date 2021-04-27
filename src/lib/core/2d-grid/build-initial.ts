@@ -1,6 +1,8 @@
-export function build2DGrid(x: number, y: number) {
-    if (x === 0 || y === 0) {
+import { Grid } from "../../models";
+
+export function build2DGrid(rows: number, columns: number): Grid {
+    if (rows === 0 || columns === 0) {
         return [];
     }
-    return Array(y).fill(null).map(_ => Array(x).fill(0));
+    return Array(rows).fill(null).map(() => Array(columns).fill(0));
 }

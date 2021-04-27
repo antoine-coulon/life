@@ -1,5 +1,11 @@
 * {
   box-sizing: border-box;
+  font-family: Consolas;
+}
+
+:root {
+  --life-blue-color: rgb(8 177 206);
+  --life-white-color: #f8f8f8;
 }
 
 html,
@@ -8,40 +14,102 @@ body {
   padding: 0;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
   height: 100vh;
-  width: 100vw;
-  background: #f8f8f8;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100%;
+  background: var(--life-white-color);
+}
+
+header {
+  width: 100%;
+  padding: 25px;
+  font-size: 27px;
+  font-weight: bold;
+  color: var(--life-white-color);
+  background: rgb(8 177 206);
+  -moz-box-shadow: 3px 3px 5px 2px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 2px #ccc;
+  box-shadow: 3px 3px 5px 2px #ccc;
+}
+
+button {
+  border: none;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 7px;
+  background: var(--life-blue-color);
+  color: var(--life-white-color);
+  font-weight: bold;
+  box-shadow: 3px 3px 5px 2px #ccc;
+  transition: 0.2s all;
+}
+
+button:hover {
+  cursor: pointer;
+  color: black;
+  background: var(--life-white-color);
+  box-shadow: 1px 1px 5px 2px rgba(8 177 206 / 20);
+}
+
+label {
+  font-size: 20px;
+}
+
+b {
+  font-size: 24px;
+  color: var(--life-blue-color);
 }
 
 #root {
   height: 100%;
   width: 100%;
-  padding: 50px;
 }
 
 .game-container {
-  padding: 50px;
-  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.game-container > .game-header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 35px auto;
+}
+
+.evolution {
+  font-size: 20px;
+}
+
+.input-unit-selector {
+  font-family: "Roboto", sans-serif;
+  color: var(--life-white-color);
+  font-size: 1.2rem;
+  height: 100%;
+  padding: 0.7rem 1rem;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  box-shadow: 3px 3px 5px 2px #ccc;
+  background-color: var(--life-blue-color);
+  border: none;
+  width: 150px;
+  margin-left: 10px;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
 }
 
 .game-container > .grid-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .game-row-container {
@@ -55,7 +123,7 @@ code {
 }
 
 #cell {
-  transition: background-color 0.5s ease;
+  transition: background-color 0.2s ease;
   border: 1.5px solid rgb(88, 88, 88);
 }
 
@@ -67,13 +135,13 @@ code {
   background: rgb(194, 194, 194);
 }
 #cell:hover:not(.dead-cell) {
-  opacity: 0.7;
+  background: black;
 }
 
 .alive-cell {
-  background: rgb(0, 139, 163);
+  background: rgb(8 177 206);
 }
 
 .dead-cell {
-  background: white;
+  background: var(--life-white-color);
 }

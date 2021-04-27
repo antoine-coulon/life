@@ -4,19 +4,18 @@ import { Cell } from "./Cell";
 type RowProps = {
     grid: number[][];
     updateGrid: (grid: number[][]) => void;
-    xAxis: number;
-    columns: number[];
+    yAxis: number;
+    rows: number[];
 }
-export const Row: FunctionComponent<RowProps> = ({ columns, grid, updateGrid, xAxis }) => {
-
+export const Row: FunctionComponent<RowProps> = ({ rows, grid, updateGrid, yAxis }): JSX.Element => {
     return <div className="game-row-container">
         {
-            columns &&
-            columns.map((column, yAxis) => {
+            rows && rows.map((row, xAxis) => {
                 return <Cell
-                    xAxis={xAxis}
-                    column={column}
+                    key={xAxis}
                     yAxis={yAxis}
+                    row={row}
+                    xAxis={xAxis}
                     grid={grid}
                     updateGrid={updateGrid} />
             })
