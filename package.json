@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "npm run test -- --coverage --watchAll=false --collectCoverageFrom=**/src/lib/**/*.ts",
-    "deploy": "npm run build && npm run lint && firebase deploy",
+    "deploy": "npm run lint && npm run build && firebase deploy",
     "lint": "eslint src/**/*.{ts,tsx}",
     "eject": "react-scripts eject"
   },
