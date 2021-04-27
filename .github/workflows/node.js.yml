@@ -22,6 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build
-      - run: npm test:coverage
+      - run: npm run test:coverage
       - name: Send coverage report to Codecov
         uses: codecov/codecov-action@v1
