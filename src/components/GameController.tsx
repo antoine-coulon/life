@@ -35,18 +35,21 @@ const GameController: FunctionComponent<GameControllerProps> = ({ setGame, game 
     return (
         <div className="game-header">
             <div className="evolution">
-                Evolution day : <b>{game.day}</b>
+                Evolution day : <b> {game.day} </b>
             </div>
-            <label htmlFor="unit-selector">
-                Time (ms) between days
-                    <input
+            <div>
+                <b>
+                    Time evolution (ms)
+                </b>
+                <input
                     defaultValue={evolutionDayUnit}
                     type="number"
                     name="unit-selector"
                     min="150"
                     className="input-unit-selector"
-                    onChange={(e) => setEvolutionDayUnit(Number(e.target.value))} />
-            </label>
+                    onChange={(e) => setEvolutionDayUnit(Number(e.target.value))}
+                />
+            </div>
             <button
                 type="button"
                 onClick={() => setAutomaticEvolution()}>

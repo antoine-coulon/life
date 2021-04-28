@@ -63,7 +63,6 @@ label {
 
 b {
   font-size: 24px;
-  color: var(--life-blue-color);
 }
 
 #root {
@@ -76,20 +75,33 @@ b {
   flex-direction: column;
 }
 
-.game-container > .game-header {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
+.game-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
+  grid-template-rows: 60px;
+  grid-gap: 20px;
+  justify-content: center;
+  width: 90%;
   margin: 35px auto;
+}
+
+.game-header > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .evolution {
   font-size: 20px;
 }
 
+.evolution > b {
+  margin-left: 10px;
+  color: var(--life-blue-color);
+}
+
 .input-unit-selector {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--life-white-color);
   font-size: 1.2rem;
   height: 100%;
@@ -110,16 +122,14 @@ b {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 35px 15px 35px 15px;
+  overflow: hidden;
 }
 
 .game-row-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.game-row-container > div {
-  padding: 20px;
 }
 
 #cell {
@@ -134,6 +144,7 @@ b {
 #cell:hover:not(.alive-cell) {
   background: rgb(194, 194, 194);
 }
+
 #cell:hover:not(.dead-cell) {
   background: black;
 }
@@ -144,4 +155,28 @@ b {
 
 .dead-cell {
   background: var(--life-white-color);
+}
+
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  .game-row-container > div {
+    padding: 6px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 980px) {
+  .game-row-container > div {
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 980px) and (max-width: 1200px) {
+  .game-row-container > div {
+    padding: 15px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .game-row-container > div {
+    padding: 18px;
+  }
 }
