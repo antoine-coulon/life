@@ -1,6 +1,6 @@
 import { CellStatus, Grid } from "../../models";
 import { clone2DArray } from "../../util/clone-2d-array";
-import { cellPositionsToCheck } from "./grid-cell";
+import { NEIGHBORING_CELLS_POSITIONS } from "./grid-cell";
 
 export function updateGrid(currentGrid: Grid): Grid {
     const currentDayState = clone2DArray(currentGrid);
@@ -9,29 +9,17 @@ export function updateGrid(currentGrid: Grid): Grid {
 }
 
 function watchEvolution(currentGrid: Grid) {
-    const evolutedGrid: Grid = [];
-
+    const evolvedGrid: Grid = [];
     currentGrid.forEach((row, rowIdx) => {
-        const newRow: number[] = [];
+        const evolvedRow: number[] = [];
         row.forEach((column, columnIdx) => {
             const cellStatus: number = currentGrid[rowIdx][columnIdx];
-            const aliveNeighborCells = getNumberOfAliveNeighborCells(currentGrid, rowIdx, columnIdx);
-
-            if (cellStatus === 1) {
-                if (aliveNeighborCells === 2 || aliveNeighborCells === 3) {
-                    newRow.push(1);
-                } else {
-                    newRow.push(0);
-                }
-            } else if (aliveNeighborCells === 3) {
-                newRow.push(1);
-            } else {
-                newRow.push(0);
-            }
+            const aliveNeighborCells: number = getNumberOfAliveNeighborCells(currentGrid, rowIdx, columnIdx);
+            evolvedRow.push(getCellEvolution(cellStatus, aliveNeighborCells));
         });
-        evolutedGrid.push(newRow);
+        evolvedGrid.push(evolvedRow);
     });
-    return evolutedGrid;
+    return evolvedGrid;
 }
 
 function isCellAlive(grid: Grid, gridPosition: { rowIdx: number, columnIdx: number }): boolean {
@@ -44,7 +32,7 @@ function isCellAlive(grid: Grid, gridPosition: { rowIdx: number, columnIdx: numb
 }
 
 function getNumberOfAliveNeighborCells(grid: Grid, row: number, column: number): number {
-    return cellPositionsToCheck.reduce((aliveNeighbors, position) => {
+    return NEIGHBORING_CELLS_POSITIONS.reduce((aliveNeighbors, position) => {
         const gridPosition = {
             columnIdx: column + position.x,
             rowIdx: row + position.y
@@ -54,4 +42,25 @@ function getNumberOfAliveNeighborCells(grid: Grid, row: number, column: number):
         }
         return aliveNeighbors;
     }, 0);
+}
+
+function getCellEvolution(cellStatus: CellStatus, aliveNeighborCells: number): number {
+    if (cellStatus === CellStatus.ALIVE) {
+        return getAliveCellEvolution(aliveNeighborCells);
+    }
+    return getDeadCellEvolution(aliveNeighborCells);
+}
+
+function getDeadCellEvolution(aliveNeighborCells: number): number {
+    if (aliveNeighborCells === 3) {
+        return 1;
+    }
+    return 0;
+}
+
+function getAliveCellEvolution(aliveNeighborCells: number): number {
+    if (aliveNeighborCells === 2 || aliveNeighborCells === 3) {
+        return 1;
+    }
+    return 0;
 }

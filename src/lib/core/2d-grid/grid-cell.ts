@@ -17,7 +17,7 @@ export function getCellAt(grid: Grid, coords: Coords): number | null {
     return null;
 }
 
-export const cellPositionsToCheck: { x: number; y: number }[] = [
+export const NEIGHBORING_CELLS_POSITIONS: { x: number; y: number }[] = [
     {
         x: 1, y: 0,
     },
